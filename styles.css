@@ -12,5 +12,11 @@
     width: 16px;
     height: 16px;
     box-sizing: border-box;
+    cursor: pointer;
+
+    transition: background-color 0.2s;
 }
 
+.rainbow {
+    background-color: rgb(202, 139, 139);
+}
