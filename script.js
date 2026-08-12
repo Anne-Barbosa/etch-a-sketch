@@ -1,4 +1,5 @@
 const container = document.getElementById("container");
+const button = document.getElementById("new-grid");
 const totalSize = 960;
 
 // CREATE GRID
@@ -17,7 +18,28 @@ function createGrid(size) {
         square.style.height = `${squareSize}px`;
 
         square.addEventListener ("mouseenter", () => {
-            square.classList.add("rainbow");
+            function getRandomInt (min,max) {
+                return Math.floor(Math.random() * (max - min + 1)) + min;
+            }
+
+            const r = getRandomInt(0, 255);
+            const g = getRandomInt(0, 255);
+            const b = getRandomInt(0, 255);
+
+            const rgbColor = `rgb(${r}, ${g}, ${b})`;
+            square.style.backgroundColor = rgbColor;
+
+            const  maxCount = 10;
+
+            let count = parseInt(square.dataset.count, 10) || 0;
+
+            count = Math.min(count + 1, maxCount);
+
+            square.dataset.count = count;
+
+            const newOpacity = count / maxCount;
+            
+            square.style.opacity = newOpacity;
         });
         container.appendChild(square);
     }
@@ -27,19 +49,13 @@ function createGrid(size) {
 
 createGrid(16);
 
-// BUTTON
-const button = document.createElement("button");
-button.textContent = "New Grid";
-
-document.body.appendChild(button);
-
 // RESIZE
 
 button.addEventListener("click", () => {
     let size = Number(prompt("Enter the number of squares per size (max 100): "));
 
-    if (size < 1 || size > 100 || Number.isNaN(size)) {
-        alert("Please enter a number between 1 and 100");
+    if (!Number.isInteger(size) || size < 1 || size > 100 || Number.isNaN(size)) {
+        alert("Please enter a whole number between 1 and 100");
         return;
     }
     createGrid(size);
