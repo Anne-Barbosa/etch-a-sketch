@@ -15,17 +15,13 @@ h1 {
 
 .square {
     border: 0.5px solid hsl(0, 1%, 55%);
-    background-color: #f5f7fa;
+    background-color: #ffffff;
     width: 16px;
     height: 16px;
     box-sizing: border-box;
     cursor: pointer;
 
     transition: background-color 0.2s;
-}
-
-.rainbow {
-    background-color: rgb(202, 139, 139);
 }
 
 button {
